@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './news-page-styles/newsmain.css'
 
 function NewsCard({ type }) {
   // Пример данных новости
@@ -32,7 +33,7 @@ function NewsCard({ type }) {
     <div className="newscard mb-10 rounded-sm mt-8 w-[70%] h-[500px] flex flex-col justify-between">
       <div className="header flex justify-between">
         <h1 className='ml-3 mt-3 font-bold text-xl'>{title}</h1>
-        <span className='bg-gray-300 p-3'>{date}</span>
+        <span className='bg-gray-300 date p-3'>{date}</span>
       </div>
 
       <div className="ml-3 main">
@@ -58,8 +59,8 @@ export default function NewsMain() {
 
   return (
     <div className='flex items-center justify-center flex-col min-w-screen min-h-screen'>
-      <div className="header w-full h-20 flex justify-center items-center p-2">
-        <div className="navbar text-gray-600 font-semibold">
+      <div className="header-nav w-full flex justify-center items-center p-2">
+        <div className="navbar mt-4 text-gray-600 font-semibold">
           {/* Используем обработчики событий для изменения типа новостей */}
           <Link onClick={() => handleNewsTypeChange('latest')} className='mr-20 hover:text-gray-700 duration-200'>Последние</Link>
           <Link onClick={() => handleNewsTypeChange('sports')} className='mr-20 hover:text-gray-700 duration-200'>Спортивные</Link>
@@ -68,7 +69,7 @@ export default function NewsMain() {
         </div>
       </div>
 
-      <h1 className='mt-10 text-blue-900 font-bold text-2xl'>Новости</h1>
+      <h1 className='novosti mt-6 text-blue-900 font-bold text-2xl'>Новости</h1>
 
       {/* Лента новостей */}
       <div className="news-container w-full flex justify-center flex-col items-center">

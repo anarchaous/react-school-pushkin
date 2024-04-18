@@ -1,0 +1,31 @@
+@media (min-width: 778px) {
+    .main-director {
+        width: 800px;
+        height: 248px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+    }   
+}
+  
+@media (max-width: 756px) {
+    .main-director {
+        width: 310px;
+        height: 1000px;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+    .main-director .about {
+        display: none;
+    }
+    .main-director .photo {
+        margin-top: 10px;
+    }
+
+    .main-director .about-info {
+        margin-left: -10px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from '../components/Header'
 import { Link } from "react-router-dom";
 import TeachersMain from "../teachers-page-components/TeachersMain";
+import './Teachers.css'
 
 function SecondHeader() {
     return(
@@ -19,8 +20,10 @@ function SecondHeader() {
 
 function Teachers() {
     return(
-        <div className="Teachers min-w-full min-h-full flex items-center  flex-col">
-            <Header />
+        <div className="Teachers min-w-full min-h-full flex items-center overflow-x-hidden  flex-col">
+            <div className="w-full">
+                <Header />
+            </div>
             <SecondHeader />
             <TeachersMain />
         </div>

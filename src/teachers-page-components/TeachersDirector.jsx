@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import './teachers-styles/TeachersDirector.css'
 
 export default function TeachersDirector() {
 
@@ -19,8 +20,7 @@ export default function TeachersDirector() {
     }, [])
 
   return (
-    <>
-      <div className="director flex items-center rounded-l-full lg:w-[800px] h-60 border-2 border-gray-400">
+      <div className="main-director flex items-center border-2 border-gray-400">
                 <div className="photo ml-4 mr-4 w-40 h-40 rounded-full bg-gray-800"></div>
 
                 <div className="about font-bold">
@@ -44,6 +44,5 @@ export default function TeachersDirector() {
                 </div>
                 
             </div>  
-    </>
   )
 }

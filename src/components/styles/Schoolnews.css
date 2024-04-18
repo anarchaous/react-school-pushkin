@@ -1,0 +1,33 @@
+@media (min-width: 778px) {
+    
+}
+
+/* .slider {
+    background: red;
+    
+} */
+
+@media (max-width: 756px) {
+    .main .slider{
+        height: 420px;
+    }
+
+    .Card {
+        width: 14em;
+        height: 25rem;
+    }
+
+    .main {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main .slider {
+        width: 100%;
+    }
+
+    .osnova .more-news-button {
+        margin-top: 100px;
+        background: red;
+    }
+}

@@ -1,0 +1,59 @@
+@media (min-width: 778px) {
+    
+}
+  
+@media (max-width: 756px) {
+    .header-nav {
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }    
+    .header-nav .navbar {
+        margin-top: 50px;
+        display: flex;
+        font-size: 1.2em;
+        flex-direction: column;
+        margin-left: 100px;
+    }
+    .header-nav .navbar a {
+        margin-bottom: 30px;
+    }
+
+    .novosti {
+        font-size: 2em;
+    }
+
+    .newscard {
+        width: 350px;
+        overflow-x: hidden;
+        height: 400px;
+        margin-bottom: 0px;
+    }
+
+    .newscard h1 {
+        font-size: 1rem;
+        line-height: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .newscard .main p {
+        margin-bottom: 50px;
+    }
+
+    .newscard .date {
+        padding: 1;
+        height: 50%;
+        text-align: center;
+        line-height: 2vh;
+    }
+
+    .newscard .images {
+        width: 790px;
+    }
+    .newscard .images div {
+        height: 99%;
+        width: 500px;
+    }
+}

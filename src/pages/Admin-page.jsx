@@ -1,10 +1,16 @@
 import React, { useEffect } from 'react'
+import AdminSidebar from '../admin-page-components/AdminSidebar'
+import AdminHeader from '../admin-page-components/AdminHeader'
+import AdminAddStaff from '../admin-page-components/AdminAddStaff'
 
 export default function Adminpage() {
   return (
-    <div>
-        <input type="text" className='border-4 border-gray-400'/>
-        <button className='bg-blue-900 text-white font-semibold p-2 ml-2 rounded-md active:bg-blue-800'>Add news</button>
+    <div className='flex overflow-hidden'>
+        <AdminSidebar />
+        <div className='flex flex-col min-w-full min-h-screen'>
+          <AdminHeader />
+          <AdminAddStaff />
+        </div>
     </div>
   )
 }

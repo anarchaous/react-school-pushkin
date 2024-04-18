@@ -1,5 +1,5 @@
 .Main {
-    background: url('bg.jpg');
+    background: url('images/bg.jpg');
     height: 90vh;
     background-repeat: no-repeat;
     background-position: center;
@@ -22,3 +22,21 @@
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply; */
+
+@media (min-width: 778px) {
+  .Main a {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 756px) {
+  .Main a {
+    padding: 0.7rem;
+  }
+  .Main h1 {
+    font-size: 1.5em;
+  }
+  .Main .second-h1 {
+    margin-bottom: 10px;
+  }
+}

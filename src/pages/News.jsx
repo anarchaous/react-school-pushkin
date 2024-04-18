@@ -5,7 +5,7 @@ import Newsphoto from '../news-page-components/newsphoto.jsx'
 
 export default function News() {
   return (
-    <div>
+    <div className='overflow-x-hidden overflow-y-hidden'>
         <Header />
         <Newsphoto />
         <NewsMain />

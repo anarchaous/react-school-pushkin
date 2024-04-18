@@ -1,0 +1,12 @@
+@media (min-width: 778px) {
+   
+}
+  
+@media (max-width: 756px) {
+    .secondheader {
+        font-size: 0.8em;
+    }
+    .secondheader .navbar {
+        margin-left: 35px;
+    }
+}

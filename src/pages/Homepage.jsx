@@ -8,7 +8,7 @@ import Geolocation from '../components/Geolocation.jsx'
 
 function Homepage() {
     return (
-      <div className='Homepage min-w-screen min-h-screen'>
+      <div className='Homepage w-full overflow-x-hidden min-h-screen'>
         <Header />
         <Main />
         <Secondmain />

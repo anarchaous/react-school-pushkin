@@ -1,0 +1,15 @@
+@media (min-width: 778px) {
+    
+}
+  
+@media (max-width: 756px) {
+    .newsphoto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .newsphoto h1 {
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+    }
+}

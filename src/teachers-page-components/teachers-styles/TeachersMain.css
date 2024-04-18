@@ -1,0 +1,9 @@
+@media (min-width: 778px) {
+   
+}
+  
+@media (max-width: 756px) {
+    .mainteacher .directors {
+        font-size: 1.4em;
+    }   
+}
