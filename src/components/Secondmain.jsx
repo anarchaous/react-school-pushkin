@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./styles/Secondmain.css"
+import axios from 'axios'
 
 function Card(props) {
-  return(
-    <Link to="/teachers" className="card duration-200 hover:cursor-pointer w-[500px] border-blue-800 border-solid border-2 h-60 p-4 flex justify-between">
-      <h1 className='font-bold'>{props.name}</h1>
-      <div className="logo w-[200px] h-[200px] bg-no-repeat overflow-hidden bg-center">
-        <img src={props.image} alt="img" />
+  return (
+    <Link to="/teachers" className="flex flex-col items-center card duration-200 hover:cursor-pointer w-64 h-72 border-2 border-blue-800 rounded-md p-2">
+      <h1 className='font-bold text-xl'>{props.name}</h1>
+      <div className="logo w-full h-full bg-cover bg-center rounded-md overflow-hidden">
+        <img src={props.image} className='w-full h-full object-cover' alt="img" />
       </div>
     </Link>
-  )
+  );
 }
 
+
+
 export default function Secondmain() {
+
   return (
     <div className='min-w-screen min-h-screen  flex flex-col items-center'>
       <div className=" header w-full h-24 flex items-center py-6 px-20">

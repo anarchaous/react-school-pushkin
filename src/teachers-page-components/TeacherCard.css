@@ -2,7 +2,7 @@
     border: 2px solid #1E3A8A;
     max-width: 800px;
     min-width: 800px;
-    height: 300px;
+    min-height: 300px;
     margin-top: 20px;
     background-color: #FFFFFF;
     border-radius: 10px;

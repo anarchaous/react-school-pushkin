@@ -2,13 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './teachers-styles/TeachersDirector.css'
+import './TeacherCard.css'
 
 export default function TeachersDirector() {
 
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        fetch("https://pushkin.onrender.com/api/staffs/2")
+        fetch("https://pushkin.onrender.com/api/staffs/0")
             .then(response => response.json())
             .then(
                 function(data) {
@@ -16,33 +17,34 @@ export default function TeachersDirector() {
                     console.log(data)
                 }
             )
-            .catch(error => console.log(error))
+            .catch(error => console.log(error.name))
     }, [])
 
   return (
-      <div className="main-director flex items-center border-2 border-gray-400">
-                <div className="photo ml-4 mr-4 w-40 h-40 rounded-full bg-gray-800"></div>
+    <div className="teachercard flex">
+    <div className="imgbox">
+      <img src='' alt="" />
+    </div>
 
-                <div className="about font-bold">
-                    <h1 className="mb-2">Фио</h1>
-                    <h1 className="mb-2">Должность</h1>
-                    <h1 className="mb-2">Контакты</h1>
-                    <h1 className="mb-2">День рождения</h1>
-                    <h1 className="mb-2">О себе</h1>
-                </div>
-
-                <div className="about-info ml-16">
-                    {data &&  (
-                    <>
-                    <h1 className="mb-2">{data.fio}</h1>
-                    <h1 className="mb-2">директор</h1>
-                    <h1 className="mb-2">{data.contact}</h1>
-                    <h1 className="mb-2">{data.birthday}</h1>
-                    <h1 className="mb-2">{/* {data.quote} */} non</h1>
-                    </>
-                    )}
-                </div>
-                
-            </div>  
-  )
+    <div className="content flex justify-between items-center">
+      <div className="details">
+        <h2 className='details-h1'>Fio:</h2>
+        <h2 className='details-h1'>Birthday:</h2>
+        <h2 className='details-h1'>Status: </h2>
+        <h2 className='details-h1'>Contacts:</h2>
+        <h2 className='details-h1'>Quote:</h2>
+      </div>
+      <div className="info">
+        <h2>Досназаров Миртурды Мамбеттурдиевич</h2>
+        <h2>20.09.1974</h2>
+        <h2>Директор</h2>
+        <h2>+997429942</h2>
+        <div className="quote ">
+          <h2>teacher.quote</h2>
+        </div>
+        {/* <h2 className='quote bg-yellow-500'>{teacher.quote}</h2> */}
+      </div>
+    </div>
+  </div>
+);
 }

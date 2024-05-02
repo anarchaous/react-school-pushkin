@@ -1,82 +1,81 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './news-page-styles/newsmain.css'
+import NewsCard from './news-page-styles/NewsCard';
+import './news-page-styles/NewsCard.css'
+// function NewsCard(props) {
+//   return (
+//     <div className="newscard p-2 mb-10 rounded-sm mt-8 w-[70%] h-[500px] flex flex-col justify-between">
+//       <div className="header flex justify-between">
+//         <h1 className='ml-3 mt-3 font-bold text-xl'>{props.title}</h1>
+//         <span className='bg-gray-300 date p-3'>{props.date}</span>
+//       </div>
 
-function NewsCard({ type }) {
-  // Пример данных новости
-  const newsData = {
-    latest: {
-      title: 'Заголовок последних новостей',
-      date: '20/12/2024',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-    },
-    sports: {
-      title: 'Заголовок спортивных новостей',
-      date: '20/12/2024',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-    },
-    achievements: {
-      title: 'Заголовок учебных достижений',
-      date: '20/12/2024',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-    },
-    events: {
-      title: 'Заголовок событий и мероприятий',
-      date: '20/12/2024',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-    },
-  };
+//       <div className="ml-3 main">
+//         <p className='text-sm mb-4'>{props.text}</p>
+//       </div>
 
-  const { title, date, content } = newsData[type];
+//       <div className="ml-3 images w-[97%] h-80 mb-4 flex text-2xl text-gray-700 font-bold">
+//         {props.images.map((image, index) => (
+//           <img 
+//             key={index} 
+//             src={image.path} 
+//             className='bg-gray-300 w-[100%] h-[100%] object-cover mr-2 flex justify-center items-center' 
+//             alt="" 
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
-  return (
-    <div className="newscard mb-10 rounded-sm mt-8 w-[70%] h-[500px] flex flex-col justify-between">
-      <div className="header flex justify-between">
-        <h1 className='ml-3 mt-3 font-bold text-xl'>{title}</h1>
-        <span className='bg-gray-300 date p-3'>{date}</span>
-      </div>
 
-      <div className="ml-3 main">
-        <p className='text-sm'>{content}</p>
-      </div>
-
-      <div className="ml-3 images  w-[97%] h-80 mb-4 flex text-2xl text-gray-700 font-bold">
-        <div className='bg-gray-300 w-[33%] h-[100%] mr-2 flex justify-center items-center'>IMG</div>
-        <div className='bg-gray-300 w-[33%] h-[100%] mr-2 flex justify-center items-center'>IMG</div>
-        <div className='bg-gray-300 w-[33%] h-[100%] mr-2 flex justify-center items-center'>IMG</div>
-      </div>
-    </div>
-  );
-}
 
 export default function NewsMain() {
-  const [newsType, setNewsType] = useState('latest'); // Используем latest как значение по умолчанию
-
-  // Обработчик события для изменения типа новостей
-  const handleNewsTypeChange = (type) => {
-    setNewsType(type);
-  };
+  const [newsType, setNewsType] = useState('latest');
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true); 
+  
+  useEffect(() => {
+    axios.get('https://pushkin.onrender.com/api/news')
+      .then(response => {
+        console.log(response.data);
+        console.log(response) // Вывод данных в консоль
+        setData(response.data);
+        setLoading(false); // Установка данных в состояние
+      })
+      .catch(error => console.error('Error fetching news:', error));
+  }, []);
+  
 
   return (
     <div className='flex items-center justify-center flex-col min-w-screen min-h-screen'>
       <div className="header-nav w-full flex justify-center items-center p-2">
         <div className="navbar mt-4 text-gray-600 font-semibold">
-          {/* Используем обработчики событий для изменения типа новостей */}
-          <Link onClick={() => handleNewsTypeChange('latest')} className='mr-20 hover:text-gray-700 duration-200'>Последние</Link>
-          <Link onClick={() => handleNewsTypeChange('sports')} className='mr-20 hover:text-gray-700 duration-200'>Спортивные</Link>
-          <Link onClick={() => handleNewsTypeChange('achievements')} className='mr-20 hover:text-gray-700 duration-200'>Учебные достижения</Link>
-          <Link onClick={() => handleNewsTypeChange('events')} className='mr-20 hover:text-gray-700 duration-200'>События и мероприятия</Link>
+          <Link onClick={() => setNewsType('latest')} className='mr-20 hover:text-gray-700 duration-200'>Последние</Link>
+          <Link onClick={() => setNewsType('sports')} className='mr-20 hover:text-gray-700 duration-200'>Спортивные</Link>
+          <Link onClick={() => setNewsType('achievements')} className='mr-20 hover:text-gray-700 duration-200'>Учебные достижения</Link>
+          <Link onClick={() => setNewsType('events')} className='mr-20 hover:text-gray-700 duration-200'>События и мероприятия</Link>
         </div>
       </div>
 
       <h1 className='novosti mt-6 text-blue-900 font-bold text-2xl'>Новости</h1>
-
-      {/* Лента новостей */}
       <div className="news-container w-full flex justify-center flex-col items-center">
-        <NewsCard type={newsType} />
-        <NewsCard type={newsType} />
-        <NewsCard type={newsType} />
-        <NewsCard type={newsType} />
+      {loading ? (
+        <div className="loader">Loading...</div>
+      ) : (
+        data.map(news => (
+          <NewsCard
+            key={news.id}
+            id={news.id}
+            date={news.date}
+            title={news.title}
+            text={news.text}
+            image={news.images} // Заменяем 'image' на 'images'
+          />
+        ))
+      )}
       </div>
     </div>
   );

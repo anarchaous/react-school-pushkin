@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form } from 'react-router-dom';
 
 export default function AdminAddStaff() {
 
@@ -7,7 +8,8 @@ export default function AdminAddStaff() {
     const [birthday, setBirthday] = useState('');
     const [quote, setQuote] = useState('');
     const [contact, setContact] = useState('');
-    const avatar = null;
+    const [statusid, setStatus] = useState('');
+    const [avatar, setAvatar] = useState(null); // Состояние для файла аватара
 
     // Счетчик для отслеживания текущего максимального ID
     const [maxId, setMaxId] = useState(2);
@@ -17,22 +19,41 @@ export default function AdminAddStaff() {
         setMaxId(prevId => prevId + 1);
     };
 
+    // Обработчик события выбора файла
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setAvatar(file);
+    };
+
     const handleSubmit = async () => {
+        const formData = new FormData();
+        formData.append('fio', fio);
+        formData.append('statusid', 2);
+        formData.append('birthday', birthday);
+        formData.append('contact', contact);
+        formData.append('quote', quote);
+        formData.append('statusid', statusid)
+
+        // Добавляем файл аватара, если он был выбран
+        if (avatar) {
+            formData.append('avatar', avatar);
+        }
+
         try {
-            const response = await axios.post('https://pushkin.onrender.com/api/staffs', {
-                // Увеличиваем текущий максимальный ID на 1 для нового элемента
-                fio: fio,
-                statusid: maxId + 1, 
-                birthday: birthday,
-                contact: contact,
-                quote: quote,
-                avatar: null,
+            const response = await axios.post('https://pushkin.onrender.com/api/staffs', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    // jt
+                    'Accept': '*/*',
+                    'Connection': 'keep-alive'
+                }
             });
             console.log('Response:', response.data);
+            alert("added succesfully")
             // Добавьте здесь логику обработки успешного ответа
             increaseId(); // Увеличиваем счетчик ID после успешной отправки данных
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error:', error.name);
             // Добавьте здесь логику обработки ошибки
         }
     };
@@ -57,7 +78,7 @@ export default function AdminAddStaff() {
 
                     <label className="block mt-4 mb-2 font-bold text-gray-800">Date of Birth</label>
                     <input
-                        type="date"
+                        type="text"
                         onChange={(e) => setBirthday(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                     />
@@ -66,6 +87,14 @@ export default function AdminAddStaff() {
                     <input
                         type="tel"
                         onChange={(e) => setContact(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                        placeholder="Enter phone number"
+                    />
+
+                    <label className="block mt-4 mb-2 font-bold text-gray-800">Status</label>
+                    <input
+                        type="text"
+                        onChange={(e) => setStatus(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         placeholder="Enter phone number"
                     />
@@ -82,6 +111,7 @@ export default function AdminAddStaff() {
                     <input
                         type="file"
                         accept="image/*"
+                        onChange={handleFileChange} // Обработчик выбора файла
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                     />
 

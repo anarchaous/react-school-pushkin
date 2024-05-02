@@ -1,0 +1,16 @@
+.burgermenu {
+    display: block;
+    position: relative;
+  }
+  
+  .burgermenu span {
+    display: block;
+    position: relative;
+    width: 80%;
+    left: 4px;
+    top: 10px;
+    height: 5px;
+    background: darkslategray;
+    margin-bottom: 7px;
+  }
+  

@@ -1,7 +1,12 @@
 import React from 'react'
+import Header from '../components/Header.jsx'
+import AboutMain from './AboutMain.jsx'
 
 export default function Aboutus() {
   return (
-    <div>Aboutus</div>
+    <div>
+      <Header />
+      <AboutMain />
+    </div>
   )
 }

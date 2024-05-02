@@ -1,37 +1,34 @@
-import React from 'react'
-import './teachers-styles/TeachersDeputyDirector.css'
+import React from 'react';
+import './teachers-styles/TeachersDeputyDirector.css';
 
-export default function TeachersDeputyDirector(props) {
+function TeachersDeputyDirector({ teacher }) {
     return (
-        <>
-            <div className="deputy-director mb-6 flex items-center  h-auto border-2 border-gray-400">
-                <div className="photo ml-4 mr-12 w-60 h-40 rounded-full bg-gray-500 ">
-                    <img src={props.image} alt="" />
-                </div>
-
-                <div className="about font-bold mt-4 flex flex-col">
-                    <div className="mb-4 flex justify-between">
-                        <h1 className='status'>Фио:</h1>
-                        <h1 className=" pr-10">{props.deputyFio}</h1>
-                    </div>
-                    <div className="mb-4 flex justify-between">
-                        <h1 className='status'>Должность:</h1>
-                        <h1 className=' pr-10'>{props.deputyStatus}</h1>
-                    </div>
-                    <div className="mb-4 flex justify-between">
-                        <h1 className='status'>День рождения:</h1>
-                        <h1 className=' pr-10'>{props.deputyBirthday}</h1>
-                    </div>
-                    <div className="mb-4 flex justify-between">
-                        <h1 className='status'>Контакты:</h1>
-                        <h1 className=' pr-10'>{props.deputyContact}</h1>
-                    </div>
-                    <div className="mb-4 flex justify-between">
-                        <h1 className='status'>О себе:</h1>
-                        <h1 className="break-words pr-6  w-[60%]">{props.deputyQuote}</h1>
-                    </div>
-                </div>
+      <div className="teachercard flex">
+        <div className="imgbox">
+          <img src={teacher.image.path} alt="" />
+        </div>
+  
+        <div className="content flex justify-between items-center">
+          <div className="details">
+            <h2 className='details-h1'>Fio:</h2>
+            <h2 className='details-h1'>Birthday:</h2>
+            <h2 className='details-h1'>Status: </h2>
+            <h2 className='details-h1'>Contacts:</h2>
+            <h2 className='details-h1'>Quote:</h2>
+          </div>
+          <div className="info">
+            <h2>{teacher.fio}</h2>
+            <h2>{teacher.birthday}</h2>
+            <h2>{teacher.status.name}</h2>
+            <h2>{teacher.contact}</h2>
+            <div className="quote ">
+              <h2>{teacher.quote}</h2>
             </div>
-        </>
-    )
-}
+            {/* <h2 className='quote bg-yellow-500'>{teacher.quote}</h2> */}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+export default TeachersDeputyDirector
