@@ -1,61 +1,69 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import TeachersDirector from "./TeachersDirector";
-import TeachersDeputyDirector from "./TeachersDeputyDirector";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import TeacherCard from './TeacherCard.jsx';
 import './teachers-styles/TeachersMain.css'
+import TeachersDirector from './TeachersDirector.jsx'
 import './teachers-styles/TeachersDeputyDirector.css'
-import TeacherCard from './TeacherCard.jsx'
 
 function TeachersMain(props) {
-
-    // useEffect(() => {
-    //     fetch("https://pushkin.onrender.com/api/staffs/2")
-    //         .then(response => response.json())
-    //         .then(
-    //             function(data) {
-    //                 setData(data);
-    //                 // console.log(data)
-    //             }
-    //         )
-    //         .catch(error => console.log(error))
-    // }, [])
-
-    const [data, setData] = useState([])
+    const [teachers, setTeachers] = useState([]);
 
     useEffect(() => {
-        fetch("https://pushkin.onrender.com/api/staffs")
-            .then(response => response.json())
-            .then(data => {
-                setData(data);
-                console.log(data)
+        axios.get("https://pushkin-production.up.railway.app/api/staffs")
+            .then(response => {
+                setTeachers(response.data);
+                console.log(response.data)
             })
-            .catch(error => console.log(error))
-    }, [])
+            .catch(error => {
+                console.error('Error fetching teachers:', error);
+            });
+    }, []);
 
-    return(
-        <div className="mainteacher mam-w-full min-w-full max-h-screen min-h-screen flex flex-col items-center" >
+    return (
+        <div className="mainteacher max-w-full min-w-full h-full flex flex-col items-center">
             <h1 className="font-bold directors text-blue-900 lg:text-2xl mt-4 mb-4">Директор</h1>
-            <TeachersDirector />
-            <h1 className="font-bold directors text-blue-900 lg:text-2xl mt-4 mb-4">Зам.директоры</h1>
-            
-            {/* {teachers.map(teacher => (
-                <TeachersDeputyDirector onClick={console.log(teacher.id)}  key={teacher.id} 
-                deputyQuote={teacher.quote} 
-                image={teacher.image.path} 
-                deputyContact={teacher.contact} 
-                deputyBirthday={teacher.birthday} 
-                deputyFio={teacher.fio} 
-                deputyStatus={teacher.status.name} 
-                />
-            ))} */}
+            <div className="flex flex-col flex-grow h-auto ">
+                {teachers.map(teacher => {
+                    if (teacher.status_id === 3) {
+                        return <TeacherCard key={teacher.id} teacher={teacher} />;
+                    }
+                    return null;
+                })}
+            </div>
+            <h1 id='deputies' className="font-bold directors text-blue-900 lg:text-2xl mt-4 mb-4">Зам.директоры</h1>
 
-            {data.map(teacher => (
-                <TeacherCard key={teacher.id} teacher={teacher} />
-            ))}
+            <div className="flex flex-col flex-grow h-auto ">
+                {teachers.map(teacher => {
+                    if (teacher.status_id === 4) {
+                        return <TeacherCard key={teacher.id} teacher={teacher} />;
+                    }
+                    return null;
+                })}
+            </div>
+
+            <h1 id='teachers' className="font-bold directors text-blue-900 lg:text-2xl mt-4 mb-4">Учителя</h1>
+
+            <div className="flex flex-col flex-grow h-auto">
+                {teachers.map(teacher => {
+                    if (teacher.status_id === 5) {
+                        return <TeacherCard key={teacher.id} teacher={teacher} />;
+                    }
+                    return null;
+                })}
+            </div>
+
+            <h1 id='others' className="font-bold directors text-blue-900 lg:text-2xl mt-4 mb-4">Остальной персонал</h1>
+
+            <div className="flex flex-col flex-grow -auto">
+                {teachers.map(teacher => {
+                    if (teacher.status_id === 6) {
+                        return <TeacherCard key={teacher.id} teacher={teacher} />;
+                    }
+                    return null;
+                })}
+            </div>
         </div>
-    )
+    );
 }
 
 export default TeachersMain;

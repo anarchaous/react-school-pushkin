@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function deleteNews(newsId) {
-    axios.delete(`https://pushkin.onrender.com/api/news/${newsId}`)
+    axios.delete(`https://pushkin-production.up.railway.app/api/news/${newsId}`)
         .then(response => {
             alert("News deleted successfully");
             // Дополнительные действия, например, обновление списка новостей
@@ -52,7 +52,7 @@ function AdminNews() {
     const [data, setData] = useState();
 
     useEffect(() => {
-        axios.get('https://pushkin.onrender.com/api/news')
+        axios.get('https://pushkin-production.up.railway.app/api/news')
           .then(response => {
             console.log(response.data);
             console.log(response); // Вывод данных в консоль

@@ -126,4 +126,8 @@
     margin: 5px;
     object-fit: cover;
   }
-  
+
+.header-nav .navbar a {
+  font-size: 1.3rem;
+  margin-right: 50px;
+}

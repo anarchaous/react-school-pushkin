@@ -5,7 +5,7 @@ import axios from 'axios'
 
 function Card(props) {
   return (
-    <Link to="/teachers" className="flex flex-col items-center card duration-200 hover:cursor-pointer w-64 h-72 border-2 border-blue-800 rounded-md p-2">
+    <Link to='teachers' className="cardd flex flex-col items-center card duration-200 hover:cursor-pointer w-64 h-72 border-2 border-blue-800 rounded-md p-2">
       <h1 className='font-bold text-xl'>{props.name}</h1>
       <div className="logo w-full h-full bg-cover bg-center rounded-md overflow-hidden">
         <img src={props.image} className='w-full h-full object-cover' alt="img" />
@@ -20,17 +20,17 @@ export default function Secondmain() {
 
   return (
     <div className='min-w-screen min-h-screen  flex flex-col items-center'>
-      <div className=" header w-full h-24 flex items-center py-6 px-20">
+      <div className="header w-full h-24 flex items-center py-6 px-20">
         <div className="navbar w-full font-bold text-gray-600 flex justify-between" style={{ marginRight: '20px' }}>
-          <Link className='second-navbar-button hover:text-gray-800 duration-200'>Руководство</Link>
-          <Link className='second-navbar-button hover:text-gray-800 duration-200'>Ученики</Link>
-          <Link className='second-navbar-button hover:text-gray-800 duration-200'>Новости</Link>
-          <Link className='second-navbar-button hover:text-gray-800 duration-200'>История школы</Link>
-          <Link className='second-navbar-button hover:text-gray-800 duration-200'>Открытые уроки</Link>
+          <Link className='second-navbar-button lg:text-xl hover:text-gray-800 duration-200'>Руководство</Link>
+          <Link className='second-navbar-button lg:text-xl hover:text-gray-800 duration-200'>Ученики</Link>
+          <Link className='second-navbar-button lg:text-xl hover:text-gray-800 duration-200'>Новости</Link>
+          <Link className='second-navbar-button lg:text-xl hover:text-gray-800 duration-200'>История школы</Link>
+          <Link className='second-navbar-button lg:text-xl hover:text-gray-800 duration-200'>Открытые уроки</Link>
         </div>
       </div>
 
-      <div className="first-cards flex-grow min-w-full flex items-center justify-center">
+      <div className="first-cards mt-[-150px] flex-grow min-w-full flex items-center justify-center">
         <div className="cards w-full h-full flex gap-4 p-6 flex-wrap justify-center">
           {/* Содержимое карточек */}
           <Card name="Директор" image="https://cdni.iconscout.com/illustration/premium/thumb/coder-3462295-2895977.png"/>

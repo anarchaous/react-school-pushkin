@@ -20,7 +20,12 @@ function TeacherCard({ teacher }) {
         <div className="info">
           <h2>{teacher.fio}</h2>
           <h2>{teacher.birthday}</h2>
-          <h2>{teacher.status.name}</h2>
+          <h2>
+            {teacher.status_id === 4 ? 'Зам.Директор' :
+            teacher.status_id === 3 ? 'Директор' : 
+             teacher.status_id === 5 ? 'Учитель' : 
+             teacher.status_id === 6 ? 'Персонал' : ''}
+          </h2>
           <h2>{teacher.contact}</h2>
           <div className="quote ">
             <h2>{teacher.quote}</h2>

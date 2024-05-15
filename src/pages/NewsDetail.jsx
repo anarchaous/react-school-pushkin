@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header.jsx';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Footer from '../components/Footer.jsx';
 
 export default function NewsDetail() {
     const { id } = useParams();
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://pushkin.onrender.com/api/news/${id}`)
+        axios.get(`https://pushkin-production.up.railway.app/api/news/${id}`)
             .then(response => {
                 setData(response.data);
             })
@@ -41,6 +42,7 @@ export default function NewsDetail() {
                     </div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 }

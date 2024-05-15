@@ -21,8 +21,10 @@
   object-fit: cover;
   width: 100%;
   background-position: center;
-  height: auto;
+  height: 600px;
+  overflow: hidden; /* Добавлено */
 }
+
 
 .title {
   color: darkblue;

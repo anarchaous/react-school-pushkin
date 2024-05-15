@@ -1,52 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './Testpage.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function TeacherCard({ teacher }) {
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Ваша логика обработки входа здесь
+    console.log('Email:', email);
+    console.log('Password:', password);
+    (email == 'adolf_hitler' && password == '14881488') ? navigate('/adminpage/admin-news') : alert('Неправильный логин или пароль')
+  };
+
   return (
-    <div className="teachercard flex">
-      <div className="imgbox">
-        <img src={teacher.image.path} alt="" />
-      </div>
-
-      <div className="content flex justify-between items-center">
-        <div className="details">
-          <h2 className='details-h1'>Fio:</h2>
-          <h2 className='details-h1'>Birthday:</h2>
-          <h2 className='details-h1'>Status: </h2>
-          <h2 className='details-h1'>Contacts:</h2>
-          <h2 className='details-h1'>Quote:</h2>
-        </div>
-        <div className="info">
-          <h2>{teacher.fio}</h2>
-          <h2>{teacher.birthday}</h2>
-          <h2>{teacher.status.name}</h2>
-          <h2>{teacher.contact}</h2>
-          <div className="quote ">
-            <h2>{teacher.quote}</h2>
+    <div className="min-h-screen flex items-center justify-center bg-darkblue">
+      <div className="max-w-md border-2 border-black w-full p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-3xl font-semibold mb-4 text-black">Авторизация</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium text-black">Электронная почта</label>
+            <input
+              type="text"
+              id="email"
+              className="mt-1 p-2 w-full rounded border border-gray-300"
+              placeholder="example@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-          {/* <h2 className='quote bg-yellow-500'>{teacher.quote}</h2> */}
-        </div>
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-sm font-medium text-black">Пароль</label>
+            <input
+              type="password"
+              id="password"
+              className="mt-1 p-2 w-full rounded border border-gray-300"
+              placeholder="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-black text-white font-semibold rounded hover:bg-gray-800"
+          >
+            Войти
+          </button>
+        </form>
       </div>
     </div>
   );
-}
+};
 
-export default function Testpage() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://pushkin.onrender.com/api/staffs')
-      .then(response => {
-        setData(response.data);
-      });
-  }, []);
-
-  return (
-    <div className="testpage flex flex-col justify-center items-center">
-      {data.map(teacher => (
-        <TeacherCard key={teacher.id} teacher={teacher} />
-      ))}
-    </div>
-  );
-}
+export default LoginPage;

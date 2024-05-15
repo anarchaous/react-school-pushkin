@@ -32,13 +32,13 @@ import './news-page-styles/NewsCard.css'
 
 
 
-export default function NewsMain() {
-  const [newsType, setNewsType] = useState('latest');
+export default function NewsMain(props) {
+  const [categoryID, setCategoryID] = useState(1);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true); 
   
   useEffect(() => {
-    axios.get('https://pushkin.onrender.com/api/news')
+    axios.get('https://pushkin-production.up.railway.app/api/news')
       .then(response => {
         console.log(response.data);
         console.log(response) // Вывод данных в консоль
@@ -53,10 +53,10 @@ export default function NewsMain() {
     <div className='flex items-center justify-center flex-col min-w-screen min-h-screen'>
       <div className="header-nav w-full flex justify-center items-center p-2">
         <div className="navbar mt-4 text-gray-600 font-semibold">
-          <Link onClick={() => setNewsType('latest')} className='mr-20 hover:text-gray-700 duration-200'>Последние</Link>
-          <Link onClick={() => setNewsType('sports')} className='mr-20 hover:text-gray-700 duration-200'>Спортивные</Link>
-          <Link onClick={() => setNewsType('achievements')} className='mr-20 hover:text-gray-700 duration-200'>Учебные достижения</Link>
-          <Link onClick={() => setNewsType('events')} className='mr-20 hover:text-gray-700 duration-200'>События и мероприятия</Link>
+          <Link onClick={() => setCategoryID(1)} className='mr-20 hover:text-gray-700 duration-200'>Последние</Link>
+          <Link onClick={() => setCategoryID(2)} className='mr-20 hover:text-gray-700 duration-200'>Спортивные</Link>
+          <Link onClick={() => setCategoryID(3)} className='mr-20 hover:text-gray-700 duration-200'>Учебные достижения</Link>
+          <Link onClick={() => setCategoryID(4)} className='mr-20 hover:text-gray-700 duration-200'>События и мероприятия</Link>
         </div>
       </div>
 
@@ -65,7 +65,7 @@ export default function NewsMain() {
       {loading ? (
         <div className="loader">Loading...</div>
       ) : (
-        data.map(news => (
+        data.map(news => (news.news_category_id == categoryID )  ? (
           <NewsCard
             key={news.id}
             id={news.id}
@@ -74,8 +74,10 @@ export default function NewsMain() {
             text={news.text}
             image={news.images} // Заменяем 'image' на 'images'
           />
-        ))
+        ) : null)
       )}
+
+      {console.log(categoryID)}
       </div>
     </div>
   );

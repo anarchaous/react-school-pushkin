@@ -15,7 +15,7 @@ function TeacherCard(props) {
       redirect: "follow"
     };
     
-    fetch(`https://pushkin.onrender.com/api/staffs/${id}`, requestOptions)
+    fetch(`https://pushkin-production.up.railway.app/api/staffs/${id}`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
@@ -91,7 +91,7 @@ export default function AdminTeacherList() {
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-    const url = 'https://pushkin.onrender.com/api/staffs';
+    const url = 'https://pushkin-production.up.railway.app/api/staffs';
     axios.get(url, { timeout: 10000 }) // Установите тайм-аут в 10 секунд (или любое другое подходящее значение)
       .then(response => {
         console.log(response.data);

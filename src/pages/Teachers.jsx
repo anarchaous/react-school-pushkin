@@ -3,14 +3,23 @@ import Header from '../components/Header'
 import { Link } from "react-router-dom";
 import TeachersMain from "../teachers-page-components/TeachersMain";
 import './Teachers.css'
+import Footer from "../components/Footer";
 
 function SecondHeader() {
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return(
-        <div className="secondheader flex justify-center items-center w-full h-16 bg-blue-900 text-white"> 
-            <div className="navbar font-bold">
-                <Link className="mr-12">Директор</Link>
-                <Link className="mr-12">Замдиректора</Link>
-                <Link className="mr-12">Учителя</Link>
+        <div className="secondheader flex justify-center items-center flex-col sm:flex-row w-full h-auto bg-blue-900 text-white">
+            <div className="navbar font-bold ">
+                <button onClick={() => scrollToSection("deputies")} className="mb-2 sm:mb-0 mr-2 sm:mr-6 text-lg sm:text-xl font-normal">Замдиректора</button>
+                <button onClick={() => scrollToSection("director")} className="mb-2 sm:mb-0 mr-2 sm:mr-6 text-lg sm:text-xl font-normal">Директор</button>
+                <button onClick={() => scrollToSection("teachers")} className="mb-2 sm:mb-0 mr-2 sm:mr-6 text-lg sm:text-xl font-normal">Учителя</button>
+                <button onClick={() => scrollToSection("others")} className="mb-2 sm:mb-0 text-lg sm:text-xl font-normal">Остальной персонал</button>
             </div>
         </div>
     )
@@ -26,6 +35,7 @@ function Teachers() {
             </div>
             <SecondHeader />
             <TeachersMain />
+            <Footer />
         </div>
     )
 }

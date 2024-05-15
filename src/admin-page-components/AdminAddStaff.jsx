@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form } from 'react-router-dom';
 
 export default function AdminAddStaff() {
 
@@ -28,11 +27,10 @@ export default function AdminAddStaff() {
     const handleSubmit = async () => {
         const formData = new FormData();
         formData.append('fio', fio);
-        formData.append('statusid', 2);
+        formData.append('statusid', statusid); // Используем выбранный статус
         formData.append('birthday', birthday);
         formData.append('contact', contact);
         formData.append('quote', quote);
-        formData.append('statusid', statusid)
 
         // Добавляем файл аватара, если он был выбран
         if (avatar) {
@@ -40,7 +38,7 @@ export default function AdminAddStaff() {
         }
 
         try {
-            const response = await axios.post('https://pushkin.onrender.com/api/staffs', formData, {
+            const response = await axios.post('https://pushkin-production.up.railway.app/api/staffs', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     // jt
@@ -50,7 +48,12 @@ export default function AdminAddStaff() {
             });
             console.log('Response:', response.data);
             alert("added succesfully")
-            // Добавьте здесь логику обработки успешного ответа
+            setFio('');
+            setAvatar(null);
+            setBirthday('');
+            setContact('');
+            setQuote('');
+            setStatus('');            // Добавьте здесь логику обработки успешного ответа
             increaseId(); // Увеличиваем счетчик ID после успешной отправки данных
         } catch (error) {
             console.error('Error:', error.name);
@@ -72,6 +75,7 @@ export default function AdminAddStaff() {
                     <input
                         type="text"
                         onChange={(e) => setFio(e.target.value)}
+                        value={fio}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         placeholder="Enter full name"
                     />
@@ -80,6 +84,7 @@ export default function AdminAddStaff() {
                     <input
                         type="text"
                         onChange={(e) => setBirthday(e.target.value)}
+                        value={birthday}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                     />
 
@@ -87,21 +92,55 @@ export default function AdminAddStaff() {
                     <input
                         type="tel"
                         onChange={(e) => setContact(e.target.value)}
+                        value={contact}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         placeholder="Enter phone number"
                     />
 
                     <label className="block mt-4 mb-2 font-bold text-gray-800">Status</label>
-                    <input
-                        type="text"
-                        onChange={(e) => setStatus(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                        placeholder="Enter phone number"
-                    />
+                    <div className="flex items-center space-x-4">
+                        <label>
+                            <input
+                                type="radio"
+                                value="3" // Изменено на 3
+                                checked={statusid === "3"}
+                                onChange={(e) => setStatus(e.target.value)}
+                            />
+                            Директор
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="4" // Изменено на 4
+                                checked={statusid === "4"}
+                                onChange={(e) => setStatus(e.target.value)}
+                            />
+                            Зам. Директор
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="5" // Изменено на 5
+                                checked={statusid === "5"}
+                                onChange={(e) => setStatus(e.target.value)}
+                            />
+                            Учитель
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="6" // Изменено на 6
+                                checked={statusid === "6"}
+                                onChange={(e) => setStatus(e.target.value)}
+                            />
+                            Остальной персонал
+                        </label>
+                    </div>
 
                     <label className="block mt-4 mb-2 font-bold text-gray-800">Quote</label>
                     <textarea
                         onChange={(e) => setQuote(e.target.value)}
+                        value={quote}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         rows="3"
                         placeholder="Enter quote"

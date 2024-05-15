@@ -1,7 +1,9 @@
 
 
 @media (min-width: 778px) {
-    
+    /* .cardd {
+        min-width: 400px;
+    } */
 }
   
 @media (max-width: 756px) {
@@ -26,5 +28,16 @@
 
     .card .logo img {
         width: 95%;
+    }
+
+    .cardd {
+        max-width: 300px;
+        min-width: 300px;
+        min-height: 400px;
+        max-height: 400px;
+    }
+
+    .header .navbar {
+        display: none;
     }
 }

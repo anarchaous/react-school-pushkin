@@ -5,6 +5,7 @@ export default function AdminAddNews() {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [text, setText] = useState('');
+  const [category, setCategory] = useState('1'); // Начальное значение выбранной категории
   const [images, setImages] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -30,19 +31,20 @@ export default function AdminAddNews() {
     });
 
     Promise.all(imageBase64Promises)
-      .then((imageBase64) => {
-        const newsData = {
-          news: {
-            title: title,
-            date: date,
-            text: text,
-          },
-          images: imageBase64,
-        };
+    .then((imageBase64) => {
+      const newsData = {
+        news: {
+          title: title,
+          date: date,
+          text: text,
+          news_category_id: parseInt(category), // Передаем выбранную категорию
+        },
+        images: imageBase64,
+      };
 
         console.log("Отправляемые данные:", newsData);
 
-        axios.post("https://pushkin.onrender.com/api/news", newsData)
+        axios.post("https://pushkin-production.up.railway.app/api/news", newsData)
           .then(response => {
             console.log("Ответ от сервера:", response.data);
             alert("News created successfully");
@@ -53,6 +55,12 @@ export default function AdminAddNews() {
           })
           .finally(() => {
             setIsSubmitting(false);
+
+            setTitle('');
+            setDate('');
+            setText('');
+            setCategory('1');
+            setImages([]);
           });
       });
   };
@@ -112,6 +120,62 @@ export default function AdminAddNews() {
                 multiple
                 onChange={handleImageChange}
               />
+            </div>
+            {/* Радио-кнопки для выбора категории */}
+            <div className="mb-4">
+              <label className="block text-gray-700 font-bold mb-2">Category:</label>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    value="1"
+                    checked={category === '1'}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="form-radio h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2">Последние</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="radio"
+                    value="2"
+                    checked={category === '2'}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="form-radio h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2">Спортивные</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="radio"
+                    value="3"
+                    checked={category === '3'}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="form-radio h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2">Учебные</span>
+                </label>
+                {/* <label className="inline-flex items-center ml-6">
+                  <input
+                    type="radio"
+                    value="4"
+                    checked={category === '4'}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="form-radio h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2">Достижения</span>
+                </label> */}
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="radio"
+                    value="4"
+                    checked={category === '4'}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="form-radio h-5 w-5 text-blue-600"
+                  />
+                  <span className="ml-2">События и мероприятия</span>
+                </label>
+              </div>
             </div>
             <button
               type="submit"
