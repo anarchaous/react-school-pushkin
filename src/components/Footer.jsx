@@ -5,8 +5,24 @@ import { Link } from "react-router-dom";
 import instagramLogo from './images/instagram.png';
 import telegramLogo from './images/telegram.png';
 import facebookLogo from './images/facebook.png'
+import { useState, useEffect } from "react";
 
 function Footer() {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+    useEffect(() => {
+        const handleResize = () => {
+          setWindowWidth(window.innerWidth);
+        };
+    
+        window.addEventListener("resize", handleResize);
+    
+        // Убираем слушатель события при размонтировании компонента
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
+
     return(
         <footer className="footer bg-blue-900">
             <div className="up-containers">
@@ -23,14 +39,22 @@ function Footer() {
                         <Link to='aboutus'>О школе</Link>
                         <Link to='adminpage'>Админка</Link>
                     </div>
+
+                    {windowWidth < 756 && (
+                        <div className="first-imagebox">
+                            <img src={facebookLogo} alt="" />
+                            <img src={instagramLogo} alt="" />
+                            <img src={telegramLogo} alt="" />
+                        </div>
+                    ) }
                 </div>
 
-                <div className="second-container">
+                {windowWidth > 756 && ( <div className="second-container">
                     
                         <img src={facebookLogo} alt="" />
                         <img src={instagramLogo} alt="" />
                         <img src={telegramLogo} alt="" />
-                </div>
+                </div> )}
             </div>
 
             <div className="down-container">

@@ -73,10 +73,19 @@
 @media (max-width: 756px) {
     .footer  {
         margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .footer .up-containers {
+        display: flex;
+        flex-direction: column;
+        height: auto;
     }
 
     .footer .up-containers .first-container {
-        max-width: 90%;
+        min-width: 100%;
         margin-top: -10px;
     }
 
@@ -99,7 +108,28 @@
         display: flex;
         flex-direction: column;
         margin-top: 20px;
+        flex-wrap: wrap;
+        margin-left: -100px;
+        height: 20%;
+        column-count: 2; /* Располагаем ссылки в две колонки */
     }
+
+    .footer .first-container .first-imagebox {
+        display: flex;
+        margin-top: 30px;
+        margin-left: 20px;
+    }
+
+    .footer .first-container .first-imagebox img {
+        margin-right: 50px;
+    }
+    
+
+    .second-container {
+        max-width: 10%;
+        min-width: 10%;
+    }
+    
 
     .footer .second-container {
         max-width: 10%;
