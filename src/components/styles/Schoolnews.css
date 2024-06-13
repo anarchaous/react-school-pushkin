@@ -1,6 +1,9 @@
 @media (min-width: 778px) {
     
 }
+.school-news-card {
+    border: 2px solid darkblue;
+}
 
 /* .slider {
     background: red;

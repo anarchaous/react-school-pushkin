@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header.jsx';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './NewsDetail.css'
 import Footer from '../components/Footer.jsx';
 
 export default function NewsDetail() {

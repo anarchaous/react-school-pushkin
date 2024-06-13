@@ -1,16 +1,43 @@
+.secondheader {
+    width: 100%;
+    height: 50px;
+}
+
+.navbar {
+    line-height: 50px;
+}
+
+.navbar button {
+    margin-right: 50px;
+}
+
 @media (min-width: 778px) {
-   
+   .secondheader {
+    font-size: 0.5em;
+   }
 }
   
 @media (max-width: 756px) {
     .secondheader {
-        font-size: 0.8em;
+        height: 70px;
+        line-height: 80px;
     }
+    
     .secondheader .navbar {
-        margin-left: 35px;
+        font-size: 0.5em;
+        display: flex;
+        text-wrap: wrap;
+        word-wrap: break-word;
+        height: 70px;
+        align-items: center;
+        justify-content: center;
     }
 
-    .secondheader .navbar a {
-        font-size: 1rem;;
+    .secondheader .navbar button {
+        font-size: 1.6em;
+        margin-right: 13px;
+        font-weight: 600;
+        text-wrap: wrap;
+        word-wrap: break-word;
     }
 }

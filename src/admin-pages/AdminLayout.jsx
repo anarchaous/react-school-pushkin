@@ -33,15 +33,16 @@ export default function AdminLayout() {
 
   if (!isLoggedIn) {
     return (
-      <div className='adminlayout flex overflow-hidden'>
+      <div className={`adminlayout ${!isLoggedIn ? 'logged' : null} flex overflow-hidden`}>
+        <h1>PUSHKIN37 ADMIN</h1>
         <div className="container flex flex-col">
           <form onSubmit={handleSubmit}>
             <label>
-              Имя пользователя:
+              <h2>Имя Пользователя</h2>
               <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
             </label>
             <label>
-              Пароль:
+              <h2>Пароль</h2>
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
             <button type="submit">Войти</button>

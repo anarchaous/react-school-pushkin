@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 
 function Header() {
     const [language, setLanguage] = useState('ru');
     const [isOpen, setOpen] = useState();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const headerRef = useRef(null);
 
     const toggleLanguage = () => {
         setLanguage(language === 'ru' ? 'en' : 'ru');
@@ -29,11 +31,22 @@ function Header() {
         };
       }, []);
 
+      useLayoutEffect(() => {
+
+        gsap.context(() => {
+            const tl = gsap.timeline({repeat: 0, duration: 0});
+            tl.from('.logo-image', {y: 50, opacity: 0})
+            tl.from('.logo-text', {y: 50, opacity: 0})
+            tl.from('.main-header-navbar', {y: 50, opacity: 0})
+            tl.from('.language', {y: 50, opacity: 0})
+        }, headerRef)
+      }, [])
+
     return (
-        <div className="Header min-w-full max-h-16 z-1 shadow-2xl font-semibold p-3 items-center text-blue-900">
+        <div ref={headerRef} className="Header min-w-full max-h-16 z-1 shadow-2xl font-semibold p-3 items-center text-blue-900">
             <div className="logo ml-10 flex">
                 <div className="logo-image w-12 h-12 mr-4"></div>
-                <a href="/" className="inline-block w-[200px] text-center align-middle py-2">37-Школа им. Пушкина</a>
+                <a href="/" className="logo-text inline-block w-[200px] text-center align-middle py-2">37-Школа им. Пушкина</a>
             </div>
 
             <div className="main-header-navbar flex sm:items-center">
@@ -43,11 +56,7 @@ function Header() {
             </div>
 
             <div className="language mr-10 mt-2 sm:mt-0">
-                <label className="relative inline-flex items-center cursor-pointer">
-                    <input className="sr-only peer" value="" type="checkbox" />
-                    <div className="peer rounded-md outline-none duration-100 after:duration-500 w-20 h-8 bg-blue-900 peer-focus:outline-none peer-focus:ring-blue-500  after:content-['eng'] after:absolute after:outline-none after:rounded-sm after:h-6 after:w-8 after:bg-white after:top-1 after:left-1 after:flex after:justify-center after:items-center  after:text-sky-800 after:font-bold peer-checked:after:translate-x-10 peer-checked:after:content-['rus'] peer-checked:after:border-white">
-                    </div>
-                </label>
+                +9989987423647
             </div>
 
             {windowWidth < 756 && (

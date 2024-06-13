@@ -14,7 +14,7 @@ function SecondHeader() {
     };
 
     return(
-        <div className="secondheader flex justify-center items-center flex-col sm:flex-row w-full h-auto bg-blue-900 text-white">
+        <div className="secondheader flex justify-center items-center flex-col sm:flex-row w-full bg-blue-900 text-white">
             <div className="navbar font-bold ">
                 <button onClick={() => scrollToSection("deputies")} className="mb-2 sm:mb-0 mr-2 sm:mr-6 text-lg sm:text-xl font-normal">Замдиректора</button>
                 <button onClick={() => scrollToSection("director")} className="mb-2 sm:mb-0 mr-2 sm:mr-6 text-lg sm:text-xl font-normal">Директор</button>

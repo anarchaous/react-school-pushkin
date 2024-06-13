@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios'
 import './styles/Schoolnews.css';
+import { marker } from 'leaflet';
 
 function NewsCard({ img, text, title }) {
   return (
     <div className="max-w-lg mx-auto">
-      <div className="bg-white rounded-lg h-[450px] overflow-hidden shadow-lg border-2 border-gray-500 mr-2">
+      <div className="news-card-tr bg-white school-news-card  rounded-lg h-[450px] overflow-hidden shadow-lg border-2 mr-2">
         <img className="w-full h-64 object-cover object-center" src={img} alt="News" />
         <div className="p-6">
           <h2 className="text-xl font-semibold mb-2">{title}</h2>
@@ -75,11 +76,39 @@ export default function Schoolnews() {
     ]
   };
 
+  useLayoutEffect(() => {
+    gsap.from('.news-title', {opacity: 0, duration: 1,
+      scrollTrigger: {
+        trigger: '.about-us-btn',
+        markers: false,
+        start: 'top center'
+      }
+    })
+
+    gsap.from('.news-last-title', {opacity: 0, x:-100, duration: 1, delay: .2,
+      scrollTrigger: {
+        trigger: '.news-title',
+        markers: false,
+        start: 'top center'
+      }
+    })
+  }, [])
+
+  gsap.from('.more-news-button', {opacity: 0, y:-100, duration: 1, delay: .2,
+    scrollTrigger: {
+      trigger: '.news-title',
+      markers: false,
+      start: 'top center'
+    }
+  })
+
+  
+
   return (
     <div className="osnova min-w-screen min-h-screen flex flex-col items-center overflow-x-hidden">
       <div className="header h-32 p-4 flex items-center flex-col">
-        <h1 className="font-bold text-6xl">Новости</h1>
-        <h2 className="font-semibold text-md mt-4 text-gray-700">Последние новости школы</h2>
+        <h1 className="news-title font-bold text-6xl">Новости</h1>
+        <h2 className="news-last-title font-semibold text-md mt-4 text-gray-700">Последние новости школы</h2>
       </div>
 
       {data.length > 0 ? ( // Проверка, что данные загружены

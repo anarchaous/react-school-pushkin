@@ -1,6 +1,5 @@
 .school-logo-circle {
    /* background: url('../images/group9.png'); */
-   background: gray;
     background-repeat: no-repeat;
     background-position: center;
     height: 450px;
@@ -41,9 +40,12 @@
     }
 
     .p-container p {
-        font-size: 0.7em;
+        font-size: 0.9em;
         width: 350px;
-        font-weight: normal;    
+        line-height: 23px;
+        text-align: center;
+        font-weight: normal;
+        font-weight: 500;    
     }
     .p-container a {
         padding: 5px;

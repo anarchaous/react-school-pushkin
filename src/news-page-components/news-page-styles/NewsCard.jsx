@@ -8,7 +8,7 @@ function NewsCard(props) {
   return(
     <div className="card">
       <Link to={`/news/${props.id}`}>
-        <img src={props.image[0].path} alt="image" />
+        <img className="card-img" src={props.image[0].path} alt="image" />
         <div className="content">
           <span className="title">{props.title}</span>
           <p className="desc">{trimmedText}</p>
