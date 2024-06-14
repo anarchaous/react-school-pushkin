@@ -105,7 +105,7 @@ export default function Schoolnews() {
   
 
   return (
-    <div className="osnova min-w-screen min-h-screen flex flex-col items-center overflow-x-hidden">
+    <div className="osnova flex flex-col items-center overflow-x-hidden">
       <div className="header h-32 p-4 flex items-center flex-col">
         <h1 className="news-title font-bold text-6xl">Новости</h1>
         <h2 className="news-last-title font-semibold text-md mt-4 text-gray-700">Последние новости школы</h2>

@@ -1,105 +1,135 @@
 .about-main {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f4f4f9;
-    padding: 20px 0;
-  }
-  
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f4f9;
+  padding: 20px 0;
+}
+
+.about-main .container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background: #ffffff;
+  margin-top: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+}
+
+.about-main .about-block {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+  margin: 20px 0;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.about-main .about-block:last-child {
+  border-bottom: none;
+}
+
+.text h1 {
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.about-block .text {
+  font-size: 1.3em;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  line-height: 1.8;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text p {
+  margin-bottom: 20px;
+  color: #555;
+  width: 80%;
+  text-align: center;
+}
+
+.about-main .about-block.left .text {
+  order: 1;
+}
+
+.about-main .about-block.left .image {
+  order: 2;
+}
+
+.about-main .about-block.right .text {
+  order: 2;
+}
+
+.about-main .about-block.right .image {
+  order: 1;
+}
+
+.about-main .text, .about-main .image {
+  flex: 1;
+  padding: 0;
+}
+
+.about-main .image {
+  display: flex;
+  align-items: center;
+}
+
+.about-main .image img {
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 756px) {
   .about-main .container {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    background: #ffffff;
-    margin-top: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    overflow: hidden;
+    width: 90%;
   }
   
   .about-main .about-block {
-    display: flex;
-    width: 100%;
-    height: auto;
-    background: #ffffff;
-    margin: 20px 0;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 50px;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .about-main .about-block:last-child {
+    flex-direction: column;
+    margin-bottom: 20px;
     border-bottom: none;
   }
-  
-  .text h1 {
-    font-size: 2em;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-  }
-  
-  .about-block .text {
-    font-size: 1.3em;
-    text-align: justify;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    line-height: 1.8;
+
+  .about-main .text {
+    padding: 20px;
+    font-size: 1em;
   }
 
-  .text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
   .text p {
-    margin-bottom: 20px;
-    color: #555;
-    width: 80%;
-    text-align: center;
-  }
-  
-  .about-main .about-block.left .text {
-    order: 1;
-  }
-  
-  .about-main .about-block.left .image {
-    order: 2;
-  }
-  
-  .about-main .about-block.right .text {
-    order: 2;
-  }
-  
-  .about-main .about-block.right .image {
-    order: 1;
-  }
-  
-  .about-main .text, .about-main .image {
-    flex: 1;
-    padding: 0;
-  }
-  
-  .about-main .image {
-    display: flex;
-    align-items: center;
-  }
-  
-  .about-main .image img {
     width: 100%;
-    max-height: 700px;
-    object-fit: cover;
-    display: block;
+    color: #555; /* Override the color change for mobile */
+    margin-bottom: 10px;
   }
-  
+
+  .about-main .image img {
+    max-height: 300px;
+  }
+
+  .text h1 {
+    font-size: 1.5em;
+  }
+}

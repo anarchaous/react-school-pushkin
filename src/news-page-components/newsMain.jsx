@@ -52,7 +52,7 @@ export default function NewsMain(props) {
   return (
     <div className='flex items-center justify-center flex-col min-w-screen min-h-screen'>
       <div className="header-nav w-full flex justify-center items-center p-2">
-        <div className="navbar mt-4 text-gray-600 font-semibold">
+        <div className="navbar text-gray-600 font-semibold">
           <Link onClick={() => setCategoryID(1)} className='mr-20 hover:text-gray-700 duration-200'>Последние</Link>
           <Link onClick={() => setCategoryID(2)} className='mr-20 hover:text-gray-700 duration-200'>Спортивные</Link>
           <Link onClick={() => setCategoryID(3)} className='mr-20 hover:text-gray-700 duration-200'>Учебные достижения</Link>

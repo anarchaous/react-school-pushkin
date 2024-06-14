@@ -1,29 +1,37 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import './Aboutus.css';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useEffect, useState} from 'react';
 import { marker } from 'leaflet';
 
 function Aboutus() {
 
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
+
   useLayoutEffect(() => {
-    gsap.from('.about-block.first', {opacity: 0, x: -100, duration: 1})
+    if(windowWidth > 756) {
+      gsap.from('.about-block.first', {opacity: 0, x: -100, duration: 1})
 
-    gsap.from('.about-block.second', {opacity: 0, x: 100, duration: .5, 
-      scrollTrigger: {
-        markers: false,
-        trigger: '.text-text-text',
-        start: 'top center'
-      }
-    })
+      gsap.from('.about-block.second', {opacity: 0, x: 100, duration: .5, 
+        scrollTrigger: {
+          markers: false,
+          trigger: '.text-text-text',
+          start: 'top center'
+        }
+      })
 
-    gsap.from('.about-block.third', {opacity: 0, x: -100, duration: .5, 
-      scrollTrigger: {
-        trigger: ".text-text-text-text",
-        markers: false,
-        start: 'top center'
-      }
-    })
+      gsap.from('.about-block.third', {opacity: 0, x: -100, duration: .5, 
+        scrollTrigger: {
+          trigger: ".text-text-text-text",
+          markers: false,
+          start: 'top center'
+        }
+      })
+  }
   }, [])
 
   return (
