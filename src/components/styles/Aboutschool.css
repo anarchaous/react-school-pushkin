@@ -10,6 +10,11 @@
     height: 600px;
 }
 
+.p-container p {
+    text-align: start;
+    line-height: 37px;
+}
+
 @media (min-width: 778px) {
     
   }

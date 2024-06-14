@@ -1,38 +1,72 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import './Aboutus.css';
+import { useLayoutEffect } from 'react';
+import { marker } from 'leaflet';
 
-export default function AboutMain() {
+function Aboutus() {
+
+  useLayoutEffect(() => {
+    gsap.from('.about-block.first', {opacity: 0, x: -100, duration: 1})
+
+    gsap.from('.about-block.second', {opacity: 0, x: 100, duration: .5, 
+      scrollTrigger: {
+        markers: false,
+        trigger: '.text-text-text',
+        start: 'top center'
+      }
+    })
+
+    gsap.from('.about-block.third', {opacity: 0, x: -100, duration: .5, 
+      scrollTrigger: {
+        trigger: ".text-text-text-text",
+        markers: false,
+        start: 'top center'
+      }
+    })
+  }, [])
+
   return (
-    <div className="bg-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto bg-white text-gray-800 rounded-lg shadow-xl p-8">
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/2 mb-4 md:mb-0">
-              <img src='https://avatars.mds.yandex.net/get-altay/9793917/2a0000018c07b15c2b46d16a14c1ce03c6f3/L_height' alt="Школа" className="w-full rounded-lg border-2 border-gray-500" />
-              <img src='https://avatars.mds.yandex.net/get-altay/9663145/2a0000018a427519165310b23926c1ed8409/L_height' alt="Школа" className="w-full rounded-lg border-2 border-gray-500 mt-4" />
-            </div>
-            <div className="md:w-1/2 md:pl-8">
-              <h1 className="text-4xl font-bold mb-6">О нашей школе</h1>
-              <p className="text-xl leading-relaxed mb-4">
-                Школа №37 имени Александра Пушкина - это престижное учебное заведение, которое находится в сердце города Нукуса. 
-                Мы гордимся нашей богатой историей и стремимся обеспечить высококачественное образование каждому нашему ученику.
-              </p>
-              <p className="text-xl leading-relaxed mb-4">
-                Наша школа уделяет особое внимание не только академическому успеху, но и развитию личности. 
-                Мы поддерживаем индивидуальный подход к каждому ученику, помогая им раскрыть свой потенциал и достичь успеха в различных сферах жизни.
-              </p>
-              <p className="text-xl leading-relaxed mb-4">
-                В нашей школе работают высококвалифицированные преподаватели, которые с любовью и профессионализмом подходят к обучению.
-                Мы предлагаем разнообразные образовательные программы, способствующие всестороннему развитию наших учеников.
-              </p>
-              <p className="text-xl leading-relaxed">
-                Приходите в нашу школу и станьте частью нашей дружной и вдохновляющей образовательной семьи!
-              </p>
-            </div>
+    <div className="about-main">
+      <div className="container">
+        <div className="about-block left first">
+          <div className="text">
+            <h1>О нашей школе</h1>
+            <p>Школа №37 имени Александра Пушкина - это престижное учебное заведение, которое находится в сердце города Нукуса. 
+              Мы гордимся нашей богатой историей и стремимся обеспечить высококачественное образование каждому нашему ученику.
+              Наша школа уделяет особое внимание не только академическому успеху, но и развитию личности.</p>
+            <p>Мы поддерживаем индивидуальный подход к каждому ученику, помогая им раскрыть свой потенциал и достичь успеха в различных сферах жизни.</p>
+          </div>
+          <div className="image">
+            <img src='https://avatars.mds.yandex.net/get-altay/9793917/2a0000018c07b15c2b46d16a14c1ce03c6f3/L_height' alt="Школа" />
           </div>
         </div>
+
+        <div className="about-block right second">
+          <div className="image text-text-text">
+            <img src='https://avatars.mds.yandex.net/get-altay/9663145/2a0000018a427519165310b23926c1ed8409/L_height' alt="Школа" />
+          </div>
+          <div className="text flex">
+            <h1 className=''>Наша миссия</h1>
+            <p className=''>Наша школа стремится не только к академическим достижениям, но и к развитию личности каждого ученика. Мы предлагаем разнообразные образовательные программы, способствующие всестороннему развитию.</p>
+            <p>В нашей школе работают высококвалифицированные преподаватели, которые с любовью и профессионализмом подходят к обучению. Мы гордимся нашими выпускниками, которые добиваются успехов в различных сферах жизни.</p>
+          </div>
+        </div>
+
+        <div className="about-block left third">
+          <div className="text">
+            <h1>Наши преподаватели</h1>
+            <p>Мы гордимся нашим коллективом преподавателей, которые обладают высоким уровнем профессионализма и преданности своему делу. Каждый учитель в нашей школе стремится вдохновлять и мотивировать своих учеников.</p>
+            <p>Наша школа предоставляет возможности для постоянного профессионального роста и развития преподавателей, что позволяет им использовать современные методы и подходы в обучении.</p>
+          </div>
+          <div className="image">
+            <img className='text-text-text-text' src='https://avatars.mds.yandex.net/get-altay/11383855/2a0000018c07b16ecda27450541e04c94fa7/L_height' alt="Школа" />
+          </div>
+        </div>
+
       </div>
-      <Footer />
     </div>
   );
 }
+
+export default Aboutus;

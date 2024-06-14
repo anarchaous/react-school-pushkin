@@ -2,6 +2,10 @@
     .cards {
         margin-top:80px;
     }
+
+    .cardd {
+        background: red;
+    }
 }
 
 @media (min-width: 778px) {
