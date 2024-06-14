@@ -1,38 +1,65 @@
-import React from 'react';
-import Footer from '../components/Footer';
+import React, { useEffect, useState } from 'react';
 import './Aboutus.css';
-import { useLayoutEffect, useEffect, useState} from 'react';
-import { marker } from 'leaflet';
 
 function Aboutus() {
-
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // Set initial window width
+    handleResize();
+
+    // Update window width on resize
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
+    gsap.from('.about-block.first', { opacity: 0, x: -100, duration: 1 });
+
+    
   }, []);
 
-  useLayoutEffect(() => {
-    if(windowWidth > 756) {
-      gsap.from('.about-block.first', {opacity: 0, x: -100, duration: 1})
+  useEffect(() => {
+    if (windowWidth > 768) {
 
-      gsap.from('.about-block.second', {opacity: 0, x: 100, duration: .5, 
+      
+
+      gsap.from('.about-block.second', {
+        opacity: 0,
+        x: 100,
+        duration: 0.5,
         scrollTrigger: {
           markers: false,
           trigger: '.text-text-text',
-          start: 'top center'
-        }
-      })
+          start: 'top center',
+        },
+      });
+      
 
-      gsap.from('.about-block.third', {opacity: 0, x: -100, duration: .5, 
+      gsap.from('.about-block.third', {
+        opacity: 0,
+        x: -100,
+        duration: 0.5,
         scrollTrigger: {
-          trigger: ".text-text-text-text",
+          trigger: '.text-text-text-text',
           markers: false,
-          start: 'top center'
-        }
-      })
-  }
-  }, [])
+          start: 'top center',
+        },
+      });
+    }
+  }, [windowWidth]);
+
+  useEffect(() => {
+    // GSAP animation to start only when all elements are ready
+    gsap.from('.about-block.first', { opacity: 0, x: -100, duration: 1 });
+    gsap.from('.about-block.second', { opacity: 0, x: 100, duration: 0.5 });
+    gsap.from('.about-block.third', { opacity: 0, x: -100, duration: 0.5 });
+  }, []);
 
   return (
     <div className="about-main">
